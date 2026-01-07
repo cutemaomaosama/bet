@@ -19,7 +19,7 @@ MARKET_CONFIG = {
     "⏳ 对局时长": ["大于等于12min", "小于12min"]
 }
 
-DEFAULT_PLAYERS = ["玩家A", "玩家B", "玩家C", "玩家D"]
+DEFAULT_PLAYERS = ["孙尚香", "孙权", "孙策", "孙悟空"]
 SALARY_MAP = {"1": 1000, "2": 1000, "3": 2000}
 
 # ==========================================
@@ -47,8 +47,8 @@ def save_data(data):
 # ==========================================
 # 🎨 页面UI
 # ==========================================
-st.set_page_config(page_title="峡谷预测家Pro", page_icon="⚔️", layout="wide")
-st.title("⚔️ 峡谷预测家 Pro (固定盘口版)")
+st.set_page_config(page_title="峡谷预测家", page_icon="⚔️", layout="wide")
+st.title("⚔️ 峡谷预测家")
 
 if 'admin_unlocked' not in st.session_state:
     st.session_state.admin_unlocked = False
@@ -277,4 +277,5 @@ if data["vault"]:
 
 with st.expander("📜 历史结算日志"):
     for l in reversed(data["logs"]):
+
         st.text(l)
