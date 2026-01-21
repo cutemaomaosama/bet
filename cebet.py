@@ -9,7 +9,7 @@ import time
 # ==========================================
 DB_FILE = "game_data.json"
 ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "888"
+ADMIN_PASSWORD = "991029"
 
 # --- 游戏数值 ---
 MIN_BET_LIMIT = 100
@@ -449,4 +449,5 @@ def main_app():
 # 入口
 if "current_user" not in st.session_state: st.session_state.current_user = None
 if st.session_state.current_user is None: login_page()
+
 else: main_app()
