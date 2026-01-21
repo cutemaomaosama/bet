@@ -136,6 +136,8 @@ def save_data(data):
 def login_page():
     st.set_page_config(page_title="策划杯竞猜", page_icon="⚔️", layout="wide")
     st.title("⚔️ 策划杯竞猜 ")
+
+    show_rules(expanded=True)
     
     data = load_data()
     
@@ -219,6 +221,7 @@ def main_app():
             st.info(f"比分记录: {' - '.join(winner_history)}")
     else:
         st.title(f"⚔️ 第 {curr_round_str} 局")
+        show_rules(expanded=False)
         st.info(f"本局对阵: {TEAM_A_NAME} vs {TEAM_B_NAME}")
 
     # ------------------------------------
@@ -451,3 +454,4 @@ if "current_user" not in st.session_state: st.session_state.current_user = None
 if st.session_state.current_user is None: login_page()
 
 else: main_app()
+
