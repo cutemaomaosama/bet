@@ -9,28 +9,28 @@ import time
 # ==========================================
 DB_FILE = "game_data.json"
 ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "888"
+ADMIN_PASSWORD = "991029"
 
 # 数值规则
 MIN_BET_LIMIT = 100
 MAX_BET_LIMIT = 500
 MIN_MARKET_COUNT = 2
-HOUSE_ODDS = 1.9
+HOUSE_ODDS = 2
 SALARY_MAP = {"1": 1000, "2": 1000, "3": 2000}
 
 # 队伍配置
-TEAM_A_NAME = "T1"
-TEAM_B_NAME = "GEN"
+TEAM_A_NAME = "温鹏祥队"
+TEAM_B_NAME = "何博文队"
 TEAMS_OPTIONS = [TEAM_A_NAME, TEAM_B_NAME]
 
 # MVP 名单
 MVP_LISTS = {
-    "1": [f"{TEAM_A_NAME}-{p}" for p in ["Zeus","Oner","Faker","Guma","Keria"]] + 
-         [f"{TEAM_B_NAME}-{p}" for p in ["Kiin","Canyon","Chovy","Peyz","Lehends"]],
-    "2": [f"{TEAM_A_NAME}-{p}" for p in ["Zeus","Oner","Faker","Guma","Keria"]] + 
-         [f"{TEAM_B_NAME}-{p}" for p in ["Kiin","Canyon","Chovy","Peyz","Lehends"]],
-    "3": [f"{TEAM_A_NAME}-{p}" for p in ["Zeus","Oner","Faker","Guma","Keria"]] + 
-         [f"{TEAM_B_NAME}-{p}" for p in ["Kiin","Canyon","Chovy","Peyz","Lehends"]]
+    "1": [f"{TEAM_A_NAME}-{p}" for p in ["上单：乔榛","打野：晏晨熙","中单：梁辰","射手：李浩","辅助：郝奕博"]] + 
+         [f"{TEAM_B_NAME}-{p}" for p in ["上单：邓淦","打野：贾宇新","中单：苏宇","射手：赵宇涵","辅助：刘培俊"]],
+    "2": [f"{TEAM_A_NAME}-{p}" for p in ["上单：阮胤广","打野：左天白","中单：张益帆","射手：温鹏祥","辅助：黄俊"]] + 
+         [f"{TEAM_B_NAME}-{p}" for p in ["上单：马浩","打野：何博文","中单：王铭宇","射手：钟文迪","辅助：刘宇骅"]],
+    "3": [f"{TEAM_A_NAME}-{p}" for p in ["上单：阮胤广","打野：左天白","中单：张益帆","射手：温鹏祥","辅助：黄俊"]] + 
+         [f"{TEAM_B_NAME}-{p}" for p in ["上单：马浩","打野：何博文","中单：王铭宇","射手：钟文迪","辅助：刘宇骅"]]
 }
 DEFAULT_MVP_LIST = [f"选手{i}" for i in range(1, 11)]
 
@@ -45,7 +45,7 @@ def get_market_config(round_str):
         "🩸 一血": {"type": "PVE", "options": TEAMS_OPTIONS, "ui": "radio"},
         "🏰 一塔": {"type": "PVE", "options": TEAMS_OPTIONS, "ui": "radio"},
         "💀 人头数": {"type": "PVE", "options": ["单", "双"], "ui": "radio"},
-        "⏳ 对局时长": {"type": "PVE", "options": ["小于12min", "大于等于12min"], "ui": "radio"}
+        "⏳ 对局时长": {"type": "PVE", "options": ["小于16min", "大于等于16min"], "ui": "radio"}
     }
 
 def load_data():
@@ -142,7 +142,7 @@ def login_page():
 # 🎮 主程序
 # ==========================================
 def main_app():
-    st.set_page_config(page_title="峡谷预测家Pro", layout="wide")
+    st.set_page_config(page_title="策划赛竞猜", layout="wide")
     user = st.session_state.current_user
     data = load_data()
     is_admin = (user == ADMIN_USERNAME)
@@ -323,3 +323,4 @@ def main_app():
 if "current_user" not in st.session_state: st.session_state.current_user = None
 if st.session_state.current_user is None: login_page()
 else: main_app()
+
