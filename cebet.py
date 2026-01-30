@@ -13,7 +13,7 @@ ADMIN_PASSWORD = "991029"
 
 # 数值规则
 MIN_BET_LIMIT = 100
-MAX_BET_LIMIT = 500
+MAX_BET_LIMIT = 1000
 MIN_MARKET_COUNT = 2
 HOUSE_ODDS = 2
 SALARY_MAP = {"1": 1000, "2": 1000, "3": 2000}
@@ -94,19 +94,36 @@ def calculate_realtime_odds(bets, market_name, market_type, option):
 # 🎨 UI 组件
 # ==========================================
 def show_rules(expanded=False):
-    with st.expander("📜 比赛规则说明 (点击展开)", expanded=expanded):
+    """显示规则的统一组件"""
+    with st.expander("📜 比赛规则说明 (点击展开/收起)", expanded=expanded):
         st.markdown(f"""
-        - **工资**: 第一二局 {SALARY_MAP['1']}，第三局 {SALARY_MAP['3']}。**每局清空**。
-        - **赔率**: PVP(胜负/MVP)为动态实时赔率；PVE(一血/一塔等)固定 {HOUSE_ODDS}。
-        - **限制**: 单注 {MIN_BET_LIMIT}-{MAX_BET_LIMIT}，每局至少 {MIN_MARKET_COUNT} 个盘口。
+        ### 1. 💰 积分发放
+        - **第一/二局**：系统发放 **{SALARY_MAP['1']}** 积分。
+        - **第三局**：系统发放 **{SALARY_MAP['3']}** 积分。
+        - **⚠️ 清空机制**：每局未下注的积分**直接清空**，不累计到下一局！请务必把工资花完。
+
+        ### 2. 🎲 赔率类型
+        - **⚔️ 玩家博弈 (PVP)**：`胜方`、`胜方MVP`
+          - 动态赔率，赢家瓜分输家筹码。买的人越少，赔率越高！
+        - **🏦 庄家固定 (PVE)**：`一血`、`一塔`、`人头数`、`时长`
+          - 固定赔率 **{HOUSE_ODDS}倍**。无论多少人买，中了系统就赔。
+
+        ### 3. 🚫 下注限制
+        - **单注金额**：{MIN_BET_LIMIT} ~ {MAX_BET_LIMIT}
+        - **最少参与**：每局至少下注 **{MIN_MARKET_COUNT}** 个不同盘口。
+
+        ### 4. 🏁 特殊赛制
+        - **BO3 机制**：若前两局同一队获胜 (2:0)，比赛直接结束。
+        - **MVP 评选**：需准确预测 **胜方** 的 **具体选手** (10选1)。
+        - **注册锁定**：第一局封盘后，停止新玩家注册。
         """)
 
 # ==========================================
 # 🔐 登录注册
 # ==========================================
 def login_page():
-    st.set_page_config(page_title="峡谷预测家Pro", layout="wide")
-    st.title("⚔️ 峡谷预测家 Pro")
+    st.set_page_config(page_title="策划杯竞猜", layout="wide")
+    st.title("⚔️ 策划杯竞猜")
     show_rules(True)
     data = load_data()
     
@@ -323,4 +340,5 @@ def main_app():
 if "current_user" not in st.session_state: st.session_state.current_user = None
 if st.session_state.current_user is None: login_page()
 else: main_app()
+
 
