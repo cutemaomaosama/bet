@@ -124,7 +124,7 @@ def show_rules(expanded=False):
 def login_page():
     st.set_page_config(page_title="策划杯竞猜", layout="wide")
     st.title("⚔️ 策划杯竞猜")
-    show_rules(True)
+    show_rules(False)
     data = load_data()
     
     if data.get("game_over"): st.error("🏁 比赛已结束")
@@ -340,6 +340,7 @@ def main_app():
 if "current_user" not in st.session_state: st.session_state.current_user = None
 if st.session_state.current_user is None: login_page()
 else: main_app()
+
 
 
 
