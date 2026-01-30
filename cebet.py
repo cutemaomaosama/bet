@@ -14,7 +14,7 @@ ADMIN_PASSWORD = "991029"
 # 数值规则
 MIN_BET_LIMIT = 100
 MAX_BET_LIMIT = 1000
-MIN_MARKET_COUNT = 2
+MIN_MARKET_COUNT = 1
 HOUSE_ODDS = 2
 SALARY_MAP = {"1": 1000, "2": 1000, "3": 2000}
 
@@ -340,5 +340,6 @@ def main_app():
 if "current_user" not in st.session_state: st.session_state.current_user = None
 if st.session_state.current_user is None: login_page()
 else: main_app()
+
 
 
