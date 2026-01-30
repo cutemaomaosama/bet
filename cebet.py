@@ -7,6 +7,13 @@ import time
 # ==========================================
 # ⚙️ 全局配置
 # ==========================================
+st.set_page_config(
+    page_title="策划杯竞猜", 
+    page_icon="⚔️", 
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 DB_FILE = "game_data.json"
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "991029"
@@ -122,7 +129,6 @@ def show_rules(expanded=False):
 # 🔐 登录注册
 # ==========================================
 def login_page():
-    st.set_page_config(page_title="策划杯竞猜", layout="wide")
     st.title("⚔️ 策划杯竞猜")
     show_rules(False)
     data = load_data()
@@ -159,7 +165,6 @@ def login_page():
 # 🎮 主程序
 # ==========================================
 def main_app():
-    st.set_page_config(page_title="策划赛竞猜", layout="wide")
     user = st.session_state.current_user
     data = load_data()
     is_admin = (user == ADMIN_USERNAME)
@@ -340,6 +345,7 @@ def main_app():
 if "current_user" not in st.session_state: st.session_state.current_user = None
 if st.session_state.current_user is None: login_page()
 else: main_app()
+
 
 
 
